@@ -1,0 +1,18 @@
+{
+  "fitbit": {
+    "appUUID": "43110a70-73c5-43a0-b472-9b52b07a660a",
+    "appType": "clockface",
+    "appDisplayName": "Simple Corners",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "#000000",
+    "requestedPermissions": [
+      "access_heart_rate",
+      "access_activity"
+    ],
+    "i18n": {
+      "en": {
+        "name": "Simple Corners"
+      }
+    }
+  }
+}
