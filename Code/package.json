@@ -9,6 +9,10 @@
       "access_heart_rate",
       "access_activity"
     ],
+    "buildTargets": [
+      "higgs",
+      "meson"
+    ],
     "i18n": {
       "en": {
         "name": "Simple Corners"

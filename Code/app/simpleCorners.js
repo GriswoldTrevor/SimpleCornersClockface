@@ -10,7 +10,10 @@ import * as util from "../common/utils";
 
 //Setup handles for commonly used UI elements 
 let dateElement = null;
-let timeElement = null;
+let timeHourTensElement = null;
+let timeHourOnesElement = null;
+let timeMinuteTensElement = null;
+let timeMinuteOnesElement = null;
 let powerElement = null;
 let heartRateElement = null;
 let stepElement = null;
@@ -38,7 +41,10 @@ let settingDistanceIsMetric = null;
 export function initClockface(savedSettings) {
   //Get handles for the UI elements
   dateElement = document.getElementById("dateText");
-  timeElement = document.getElementById("timeText");
+  timeHourTensElement = document.getElementById("timeHourTensText");
+  timeHourOnesElement = document.getElementById("timeHourOnesText");
+  timeMinuteTensElement = document.getElementById("timeMinuteTensText");
+  timeMinuteOnesElement = document.getElementById("timeMinuteOnesText");
   powerElement = document.getElementById("powerText");
   heartRateElement = document.getElementById("heartRateText");
   stepElement = document.getElementById("stepText");
@@ -101,7 +107,9 @@ export function loadSettings(savedSettings) {
   const backgroundColor = settings["backgroundColor"];
   const iconColor = settings["iconColor"];
   const textColor = settings["textColor"];
+  const font = settings["font"];
   
+  document.getElementsByClassName("clockfaceText").forEach(function(element) {element.style.fontFamily = `${font}`;});
   colorizeElements(backgroundColor, iconColor, textColor, useIconColorForCornerText);
 }
 
@@ -111,15 +119,18 @@ function parseSettings(savedSettings) {
   settings["use24HourTime"] = preferences.clockDisplay === "24h";
   settings["useMetricDistance"] = units.distance === "metric";
   settings["useIconColorForCornerText"] = false;
-  settings["backgroundColor"] = "#000000";
-  settings["textColor"] = "#FFFFFF";
-  settings["iconColor"] = "#FFFFFF";
+  settings["backgroundColor"] = "#3f51b5";
+  settings["textColor"] = "#ffffff";
+  settings["iconColor"] = "#4fc3f7";
+  settings["font"] = "Fabrikat-Bold";
   
   //Load saved settings
   for (const key in savedSettings) {
     if (savedSettings[key] !== null && savedSettings[key] !== undefined) {
       if (key === "use24HourTime" || key === "useMetricDistance" || key === "useIconColorForCornerText") { //Bool
         settings[key] = savedSettings[key]; 
+      } else if (key === "font") { //Text
+        settings[key] = savedSettings[key][0].value;
       } else if (key === "backgroundColor" || key === "iconColor" || key === "textColor") { //Color
         if (util.isValidHexColor(savedSettings[key]))
           settings[key] = savedSettings[key].trim();
@@ -133,13 +144,13 @@ function parseSettings(savedSettings) {
 function colorizeElements(backgroundColor, iconColor, textColor, useIconColorForCornerText) {
   const backgroundElements = [document.getElementById("background")];
   let iconElements = document.getElementsByClassName("icon");
-  let textElements = document.getElementsByClassName("centerText");
+  let textElements = document.getElementsByClassName("clockfaceText");
   const cornerTextElements = document.getElementsByClassName("statText");
   
-  if (useIconColorForCornerText)
+  if (useIconColorForCornerText) {
     iconElements = iconElements.concat(cornerTextElements);
-  else
-    textElements = textElements.concat(cornerTextElements);
+    textElements = textElements.filter( function(el) { return iconElements.indexOf( el ) < 0; } );
+  }
   
   util.colorizeElements(backgroundElements, backgroundColor);
   util.colorizeElements(iconElements, iconColor);
@@ -243,8 +254,12 @@ function updateTimeElement() {
     }
   }
   
-  const timeText = util.convertToMonospaceDigits(util.zeroPadNumber(timeHours) + " " + util.zeroPadNumber(timeMins));
-  timeElement.text = `${timeText}`;
+  const timeHourText = util.convertToMonospaceDigits(util.zeroPadNumber(timeHours));
+  const timeMinuteText = util.convertToMonospaceDigits(util.zeroPadNumber(timeMins));
+  timeHourTensElement.text = `${timeHourText.charAt(0)}`;
+  timeHourOnesElement.text = `${timeHourText.charAt(1)}`;
+  timeMinuteTensElement.text = `${timeMinuteText.charAt(0)}`;
+  timeMinuteOnesElement.text = `${timeMinuteText.charAt(1)}`;
 }
 
 function updateDateElement() {

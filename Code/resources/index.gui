@@ -1,26 +1,29 @@
 <svg id="clockface" pointer-events="visible">
-  <rect id="background" x="0" y="0" width="348" height="250" />
+  <rect id="background" />
   
-  <text id="dateText" class="centerText" />
+  <text id="dateText" class="clockfaceText" />
   
-  <text id="timeText" class="centerText" />
-  <text id="timeSemicolon" class="centerText" >:</text>
+  <text id="timeHourTensText" class="clockfaceText timeText" />
+  <text id="timeHourOnesText" class="clockfaceText timeText" />
+  <text id="timeSemicolon" class="clockfaceText timeText" >:</text>
+  <text id="timeMinuteTensText" class="clockfaceText timeText" />
+  <text id="timeMinuteOnesText" class="clockfaceText timeText" />
   
   <image id="powerIcon" class="icon" href="icons/battery.png" />
-  <text id="powerText" class="statText" />
+  <text id="powerText" class="statText clockfaceText" />
   
   <image id="heartRateIcon" class="icon" href="icons/heart.png" />
-  <text id="heartRateText" class="statText" />
+  <text id="heartRateText" class="statText clockfaceText" />
   
   <image id="stepIcon" class="icon" href="icons/footprints.png" />
-  <text id="stepText" class="statText" />
+  <text id="stepText" class="statText clockfaceText" />
   
   <image id="distanceIcon" class="icon" href="icons/mapMarker.png" />
-  <text id="distanceText" class="statText" />
+  <text id="distanceText" class="statText clockfaceText" />
   <image id="activeMinuteIcon" class="icon" href="icons/lightningBolt.png" visibility="hidden" />
-  <text id="activeMinuteText" class="statText" visibility="hidden" />
+  <text id="activeMinuteText" class="statText clockfaceText" visibility="hidden" />
   <image id="stairIcon" class="icon" href="icons/stairs.png" visibility="hidden" />
-  <text id="stairText" class="statText" visibility="hidden" />
+  <text id="stairText" class="statText clockfaceText" visibility="hidden" />
   <image id="calorieIcon" class="icon" href="icons/flame.png" visibility="hidden" />
-  <text id="calorieText" class="statText" visibility="hidden" />
+  <text id="calorieText" class="statText clockfaceText" visibility="hidden" />
 </svg>

@@ -42,7 +42,9 @@ function parseJsonSetting(value) {
   if (value !== undefined && value !== null) {
     let parsedValue = JSON.parse(value);
     
-    if (parsedValue.hasOwnProperty("value"))
+    if (parsedValue.hasOwnProperty("values"))
+      parsedValue = parsedValue["values"];
+    else if (parsedValue.hasOwnProperty("value"))
       parsedValue = parsedValue["value"];
     else if (parsedValue.hasOwnProperty("name"))
       parsedValue = parsedValue["name"];

@@ -4,7 +4,18 @@ function clockfaceSettings(props) {
       <Section 
           description={<Text align="center">If settings do not apply automatically, open another app on the watch and return to the clockface.</Text>}
           title={<Text bold>Clockface Settings</Text>}>
-        
+        <Select
+          label="Font"
+          settingsKey="font"
+          options={[
+            {name:"System", value:"System-Bold"},
+            {name:"Colfax", value:"Colfax-Medium"},
+            {name:"Fabrikat", value:"Fabrikat-Bold"},
+            {name:"Seville", value:"Seville-Bold"},
+            {name:"SevilleSharp", value:"SevilleSharp-Bold"},
+            {name:"Tungsten", value:"Tungsten-Medium"}
+          ]}
+        />
         <Toggle
           settingsKey="use24HourTime"
           label="Use 24 hour time"

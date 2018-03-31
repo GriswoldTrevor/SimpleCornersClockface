@@ -1,18 +1,26 @@
 /* 348px x 250px */
 
+.clockfaceText {
+  fill: white;
+}
+
 .statText {
   font-size: 24;
-  font-family: System-Bold;
-  fill: white;
   text-length: 15;
 }
 
-.centerText {
-  text-anchor: middle;
-  font-family: System-Bold;
-  fill: white;
-  text-length: 22;
-} 
+.timeText {
+  text-length: 1;
+  font-size: 112;
+  letter-spacing: 0;
+}
+
+#background {
+  x: 0;
+  y: 0;
+  width: 348;
+  height: 250;
+}
 
 #powerIcon {
   x: 10; /* xMargin(10) */
@@ -105,21 +113,37 @@
   y: 239; /* 100%(250) - yMarginBottom(3) - Difference(8) */
 }
 
-#timeText {
-  font-size: 112;
-  letter-spacing: 0;
-  x: 174; /* 50%(174) */
+#timeHourTensText {
+  text-anchor: middle;
+  x: 62; /* 50%(174) - (3/4 * timeTextSize(112)) - 4*xPadding(7) */
+  y: 182; /* 50%(125) + (1/3 * timeTextSize(112)) + yOffset(20) */
+}
+#timeHourOnesText {
+  text-anchor: middle;
+  x: 125; /* 50%(174) - (1/4 * timeTextSize(112)) - 3*xPadding(7) */
+  y: 182; /* 50%(125) + (1/3 * timeTextSize(112)) + yOffset(20) */
+}
+
+#timeMinuteTensText {
+  text-anchor: middle;
+  x: 223; /* 50%(174) + (1/4 * timeTextSize(112)) + 3*xPadding(7) */
+  y: 182; /* 50%(125) + (1/3 * timeTextSize(112)) + yOffset(20) */
+}
+#timeMinuteOnesText {
+  text-anchor: middle;
+  x: 286; /* 50%(174) + (3/4 * timeTextSize(112)) + 4*xPadding(7) */
   y: 182; /* 50%(125) + (1/3 * timeTextSize(112)) + yOffset(20) */
 }
 
 #timeSemicolon {
-  font-size: 112;
-  letter-spacing: 0;
+  text-anchor: middle;
   x: 174; /* 50%(174) */
   y: 169; /* 50%(125) + (1/3 * timeTextSize(112)) + yOffset(7) */
 }
 
 #dateText {
+  text-anchor: middle;
+  text-length: 22;
   font-size: 28;
   x: 174; /* 50%(174) */
   y: 85; /* 50%(125) - (0.5 * timeTextSize(112)) + yOffset(16) */
